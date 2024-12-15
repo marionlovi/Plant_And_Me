@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Soin index{% endblock %}
+
+{% block body %}
+    <h1>Soin index</h1>
+        <tbody>
+        <table style="width: 100%; border-collapse: separate; border-spacing: 0; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+            <thead style="background-color: #f8f9fa;">
+                <tr>
+                    <th style="padding: 12px 15px; text-align: left; font-weight: 600; color: #333; text-transform: uppercase; font-size: 14px; border-bottom: 1px solid #e0e0e0;">Titre</th>
+                    <th style="padding: 12px 15px; text-align: left; font-weight: 600; color: #333; text-transform: uppercase; font-size: 14px; border-bottom: 1px solid #e0e0e0;">Arrosage</th>
+                    <th style="padding: 12px 15px; text-align: left; font-weight: 600; color: #333; text-transform: uppercase; font-size: 14px; border-bottom: 1px solid #e0e0e0;">Exposition</th>
+                    <th style="padding: 12px 15px; text-align: left; font-weight: 600; color: #333; text-transform: uppercase; font-size: 14px; border-bottom: 1px solid #e0e0e0;">Température</th>
+                    <th style="padding: 12px 15px; text-align: left; font-weight: 600; color: #333; text-transform: uppercase; font-size: 14px; border-bottom: 1px solid #e0e0e0;">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for soin in soins %}
+                    <tr style="background-color: #fff;">
+                        <td style="padding: 12px 15px; text-align: left; border-bottom: 1px solid #e0e0e0;">{{ soin.titre }}</td>
+                        <td style="padding: 12px 15px; text-align: left; border-bottom: 1px solid #e0e0e0;">{{ soin.cycle }}</td>
+                        <td style="padding: 12px 15px; text-align: left; border-bottom: 1px solid #e0e0e0;">{{ soin.lumiere }}</td>
+                        <td style="padding: 12px 15px; text-align: left; border-bottom: 1px solid #e0e0e0;">{{ soin.temp }}</td>
+                        <td style="padding: 12px 15px; text-align: center; border-bottom: 1px solid #e0e0e0;">
+                            <div style="display: flex; justify-content: center; gap: 10px;">
+                                <a href="{{ path('app_soin_show', {'id': soin.id}) }}" 
+                                   style="text-decoration: none; padding: 6px 12px; border-radius: 4px; font-size: 14px; color: #007bff; border: 1px solid #007bff; transition: all 0.3s ease;"
+                                   onmouseover="this.style.backgroundColor='#007bff'; this.style.color='white';"
+                                   onmouseout="this.style.backgroundColor='transparent'; this.style.color='#007bff';">
+                                    Voir
+                                </a>
+                                <a href="{{ path('app_soin_edit', {'id': soin.id}) }}" 
+                                   style="text-decoration: none; padding: 6px 12px; border-radius: 4px; font-size: 14px; color: #28a745; border: 1px solid #28a745; transition: all 0.3s ease;"
+                                   onmouseover="this.style.backgroundColor='#28a745'; this.style.color='white';"
+                                   onmouseout="this.style.backgroundColor='transparent'; this.style.color='#28a745';">
+                                    Modifier
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_soin_new') }}">Create new</a>
+{% endblock %}
